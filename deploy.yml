@@ -1,0 +1,9 @@
+---
+- name: Install NTALK
+  user: ec2-user
+  sudo: true
+  hosts: 54.164.70.45
+
+  tasks:
+    - name: Install git
+    - yum: name=npm state=latest
