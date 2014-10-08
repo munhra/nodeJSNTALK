@@ -1,9 +1,28 @@
 ---
 - name: Install NTALK
-  user: ec2-user
+  user: ubuntu
   sudo: true
-  hosts: 54.164.70.45
+  hosts: 54.172.71.107
 
   tasks:
-    - name: Install git
-    - yum: name=npm state=latest
+
+    - name: Install GIT
+      apt: name=git state=latest
+
+    - name: Install NPM
+      apt: name=npm state=latest
+
+    - name: Install NODEJS
+      apt: name=node state=latest
+
+    - name: Checkout my NTALK
+      git: repo=https://github.com/munhra/nodeJSNTALK.git dest=/home/ubuntu/ntalk
+    
+    - name: Install NTALK required packages
+      npm: path=/home/ubuntu/ntalk state=latest
+
+    - name: "Install nodemon (to run Node.js app)."
+      npm: name=nodemon global=yes state=latest
+
+    - name: "Start NTALK APP"
+      command: nodejs app.js chdir=/home/ubuntu/ntalk
