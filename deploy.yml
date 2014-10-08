@@ -2,7 +2,7 @@
 - name: Install NTALK
   user: ubuntu
   sudo: true
-  hosts: 54.172.71.107
+  hosts: 54.172.15.87
 
   tasks:
 
@@ -17,7 +17,7 @@
 
     - name: Checkout my NTALK
       git: repo=https://github.com/munhra/nodeJSNTALK.git dest=/home/ubuntu/ntalk
-    
+
     - name: Install NTALK required packages
       npm: path=/home/ubuntu/ntalk state=latest
 

@@ -55,4 +55,9 @@ private_key_file = /home/munhra/.ssh/vntraal_aws_key.cer
 
 sudo ansible-playbook -c paramiko  deploy.yml -vvvv
 
+Comando no mac não esquecer de mudar o ip do host no ec2 tanto no arquivo do ansible quanto no arquivo yml do ansible.
+
+ansible-playbook deploy.yml -i /etc/ansible/hosts -c paramiko --private-key=/Users/munhra/.ssh/vntraal_aws_key.cer -vvvv
+MacBook-Pro-de-Rafael:nodeJSNTALK munhra$ ansible-playbook deploy.yml -i /etc/ansible/hosts -c paramiko --private-key=/Users/munhra/.ssh/vntraal_aws_key.cer  -vvvv
+
 se.devsupport@venturus.org.br
