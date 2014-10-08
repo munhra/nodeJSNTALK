@@ -1,0 +1,58 @@
+Rascunho CEUNSP
+
+Objetivo da palestra será utlizar o amazon EC2 para subir um aplicativo que irá prover um serviço REST  para o cadastro de alunos,
+vamos implementar o servidor utilizando o nodeJS e o MySQL
+
+- Custo de uma EC2 t1.micro $ 14.64
+
+- Fazer o provisionamento do serviço manualmente e mostrar como automatizar com o ansible e uma AMI
+- Fazer teste de carga com o locust e demonstrar as métricas para controle
+- Implementar alguns alarmes para mostrar como seria feito o autoscaling
+
+
+- Falar do nodeJS criado para rodar as requisições de maneira assincrona, arquitetura non-blocking thread
+- Javascript V8, amesma utilizada no navegador Google Chrome.
+- Cada aplicação terá instância de um único processo
+- NPM (Node Package Manager). Similar ao MAVEN
+- Todo projeto NODE é chamado de modulo
+- Todo modulo é acompanhado de um arquivo descrito package.json
+- Express modulo para desenvolvimento de aplicações web de grande escala
+  para instalar use o comando npm install -g express-generator
+
+Para acessar esse serviço vamos implementar também um cliente android [estou em duvida nessa parte vou ver se dá tempo],
+ou utilizar o angular e o bootstrap para fazer uma interface web bem simples
+
+
+Passos para subir e logar na instância
+
+1 - Sobe a instancia seguindo os passos do AWS
+
+2 - baixe o arquivo da chave .cer ou .pem
+
+3 - copie esse arquivo que no caso é vntraal_aws_key.cer para o diretorio .ssh
+
+4 - De o seguinte comando no MAC/LINUX, changed to ubuntu
+    ssh -i vntraal_aws_key.cer -l ec2-user [ip-da-instancia]
+    ssh -i vntraal_aws_key.cer -l ubuntu [ip-da-instancia]
+
+5 - Seguir os passos do link abaixo
+	http://docs.aws.amazon.com/gettingstarted/latest/wah-linux/getting-started-deploy-app-connect.html
+
+Draft
+
+Para funcionar tem que ser uma instancia ubuntu
+
+Configuring Ansible
+
+Modify the folowing lines
+
+# uncomment this to disable SSH key host checking
+host_key_checking = False
+
+# if set, always use this private key file for authentication, same as 
+# if passing --private-key to ansible or ansible-playbook
+private_key_file = /home/munhra/.ssh/vntraal_aws_key.cer
+
+sudo ansible-playbook -c paramiko  deploy.yml -vvvv
+
+se.devsupport@venturus.org.br
